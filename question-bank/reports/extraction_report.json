@@ -1,0 +1,12 @@
+{
+  "pdf_path": "question-bank\\pdfs\\math_questions.pdf",
+  "total_pages": 188,
+  "total_characters": 321733,
+  "scanned_pages_count": 0,
+  "scanned_pages": [],
+  "ocr_needed_pages_count": 0,
+  "ocr_needed_pages": [],
+  "elapsed_seconds": 24.68,
+  "ocr_fallback_enabled": false,
+  "status": "success"
+}
