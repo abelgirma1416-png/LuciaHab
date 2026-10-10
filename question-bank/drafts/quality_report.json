@@ -1,0 +1,25 @@
+{
+  "total_questions": 16,
+  "traceability_percentage": 100.0,
+  "subjects_breakdown": {
+    "Mathematics": 16
+  },
+  "difficulty_breakdown": {
+    "medium": 15,
+    "easy": 1
+  },
+  "question_type_breakdown": {
+    "conceptual": 15,
+    "definition": 1
+  },
+  "validation_summary": {
+    "valid": 16
+  },
+  "exact_duplicate_count": 13,
+  "similarity_warning_count": 0,
+  "math_issues_count": 0,
+  "math_issues": [],
+  "error_sample": [],
+  "warning_sample": [],
+  "similarity_warnings": []
+}

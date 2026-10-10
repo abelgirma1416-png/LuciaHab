@@ -1,0 +1,83 @@
+[
+  {
+    "id": "q-8a3b3fba0f28",
+    "question_text": "In the study of relations and functions, what is the 'domain' of a relation?",
+    "options": [
+      "The set of all first coordinates (inputs) from the ordered pairs",
+      "The set of all second coordinates (outputs) from the ordered pairs",
+      "The graph plotted only on the positive y-axis",
+      "The rule that maps multiple outputs to a single input"
+    ],
+    "correct_index": 0,
+    "correct_option": "The set of all first coordinates (inputs) from the ordered pairs",
+    "explanation": "As discussed in Unit 1: Relations and Functions (page 11), the domain of a relation consists of the set of all first coordinates of the ordered pairs.",
+    "subject": "Mathematics",
+    "topic": "1.1 Relations",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "source_document": "MATHEMATICS MATHEMATICS",
+    "source_chapter": "Unit 1: Relations and Functions",
+    "source_page_start": 11,
+    "source_page_end": 12,
+    "raw_source_snippet": "Domain and range of a relation",
+    "review_status": "approved",
+    "validation_status": "valid",
+    "validation_notes": [],
+    "reviewer": "curriculum_lead",
+    "reviewer_notes": "Passed quality validation and deduplication"
+  },
+  {
+    "id": "q-4fce715d0b51",
+    "question_text": "Which of the following conditions must be satisfied for a relation to be classified as a function?",
+    "options": [
+      "Every element in the domain is paired with exactly one element in the range",
+      "Every element in the range must be equal to zero",
+      "The relation must only contain negative integers",
+      "No two distinct inputs can produce the same output value"
+    ],
+    "correct_index": 0,
+    "correct_option": "Every element in the domain is paired with exactly one element in the range",
+    "explanation": "Textbook definition (page 12): A function is a relation where each input in the domain maps to exactly one output in the range.",
+    "subject": "Mathematics",
+    "topic": "1.1 Relations",
+    "difficulty": "medium",
+    "question_type": "conceptual",
+    "source_document": "MATHEMATICS MATHEMATICS",
+    "source_chapter": "Unit 1: Relations and Functions",
+    "source_page_start": 12,
+    "source_page_end": 13,
+    "raw_source_snippet": "A relation is a function if each element in the domain is paired with exactly one element in the range.",
+    "review_status": "approved",
+    "validation_status": "valid",
+    "validation_notes": [],
+    "reviewer": "curriculum_lead",
+    "reviewer_notes": "Passed quality validation and deduplication"
+  },
+  {
+    "id": "q-fcd75ad4a31d",
+    "question_text": "According to Unit 1: Relations and Functions, what is the mathematical definition of 'point where the axes meet'?",
+    "options": [
+      "It is theorigin of the coordinate system",
+      "The geometric reflection of an arbitrary set across the origin.",
+      "A numerical sequence where consecutive terms differ by a constant ratio.",
+      "The subset of imaginary roots obtained by solving higher-degree polynomials."
+    ],
+    "correct_index": 0,
+    "correct_option": "It is theorigin of the coordinate system",
+    "explanation": "Based on the text on page 14: the point where the axes meet\nis called theorigin of the coordinate system.",
+    "subject": "Mathematics",
+    "topic": "1.1 Relations",
+    "difficulty": "easy",
+    "question_type": "definition",
+    "source_document": "MATHEMATICS MATHEMATICS",
+    "source_chapter": "Unit 1: Relations and Functions",
+    "source_page_start": 14,
+    "source_page_end": 15,
+    "raw_source_snippet": "the point where the axes meet\nis called theorigin of the coordinate system.",
+    "review_status": "approved",
+    "validation_status": "valid",
+    "validation_notes": [],
+    "reviewer": "curriculum_lead",
+    "reviewer_notes": "Passed quality validation and deduplication"
+  }
+]

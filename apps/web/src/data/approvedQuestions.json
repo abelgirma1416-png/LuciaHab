@@ -1,0 +1,104 @@
+[
+  {
+    "id": "q-8a3b3fba0f28",
+    "category": "ethiopian_science",
+    "subject": "Mathematics",
+    "difficulty": "medium",
+    "question": {
+      "en": "In the study of relations and functions, what is the 'domain' of a relation?",
+      "am": "In the study of relations and functions, what is the 'domain' of a relation?"
+    },
+    "options": {
+      "en": [
+        "The set of all first coordinates (inputs) from the ordered pairs",
+        "The set of all second coordinates (outputs) from the ordered pairs",
+        "The graph plotted only on the positive y-axis",
+        "The rule that maps multiple outputs to a single input"
+      ],
+      "am": [
+        "The set of all first coordinates (inputs) from the ordered pairs",
+        "The set of all second coordinates (outputs) from the ordered pairs",
+        "The graph plotted only on the positive y-axis",
+        "The rule that maps multiple outputs to a single input"
+      ]
+    },
+    "correctIndex": 0,
+    "explanation": {
+      "en": "As discussed in Unit 1: Relations and Functions (page 11), the domain of a relation consists of the set of all first coordinates of the ordered pairs.",
+      "am": "As discussed in Unit 1: Relations and Functions (page 11), the domain of a relation consists of the set of all first coordinates of the ordered pairs."
+    },
+    "source": {
+      "document": "MATHEMATICS MATHEMATICS",
+      "chapter": "Unit 1: Relations and Functions",
+      "page": 11
+    }
+  },
+  {
+    "id": "q-4fce715d0b51",
+    "category": "ethiopian_science",
+    "subject": "Mathematics",
+    "difficulty": "medium",
+    "question": {
+      "en": "Which of the following conditions must be satisfied for a relation to be classified as a function?",
+      "am": "Which of the following conditions must be satisfied for a relation to be classified as a function?"
+    },
+    "options": {
+      "en": [
+        "Every element in the domain is paired with exactly one element in the range",
+        "Every element in the range must be equal to zero",
+        "The relation must only contain negative integers",
+        "No two distinct inputs can produce the same output value"
+      ],
+      "am": [
+        "Every element in the domain is paired with exactly one element in the range",
+        "Every element in the range must be equal to zero",
+        "The relation must only contain negative integers",
+        "No two distinct inputs can produce the same output value"
+      ]
+    },
+    "correctIndex": 0,
+    "explanation": {
+      "en": "Textbook definition (page 12): A function is a relation where each input in the domain maps to exactly one output in the range.",
+      "am": "Textbook definition (page 12): A function is a relation where each input in the domain maps to exactly one output in the range."
+    },
+    "source": {
+      "document": "MATHEMATICS MATHEMATICS",
+      "chapter": "Unit 1: Relations and Functions",
+      "page": 12
+    }
+  },
+  {
+    "id": "q-fcd75ad4a31d",
+    "category": "ethiopian_science",
+    "subject": "Mathematics",
+    "difficulty": "easy",
+    "question": {
+      "en": "According to Unit 1: Relations and Functions, what is the mathematical definition of 'point where the axes meet'?",
+      "am": "According to Unit 1: Relations and Functions, what is the mathematical definition of 'point where the axes meet'?"
+    },
+    "options": {
+      "en": [
+        "It is theorigin of the coordinate system",
+        "The geometric reflection of an arbitrary set across the origin.",
+        "A numerical sequence where consecutive terms differ by a constant ratio.",
+        "The subset of imaginary roots obtained by solving higher-degree polynomials."
+      ],
+      "am": [
+        "It is theorigin of the coordinate system",
+        "The geometric reflection of an arbitrary set across the origin.",
+        "A numerical sequence where consecutive terms differ by a constant ratio.",
+        "The subset of imaginary roots obtained by solving higher-degree polynomials."
+      ]
+    },
+    "correctIndex": 0,
+    "explanation": {
+      "en": "Based on the text on page 14: the point where the axes meet\nis called theorigin of the coordinate system.",
+      "am": "Based on the text on page 14: the point where the axes meet\nis called theorigin of the coordinate system."
+    },
+    "source": {
+      "document": "MATHEMATICS MATHEMATICS",
+      "chapter": "Unit 1: Relations and Functions",
+      "page": 14
+    }
+  }
+]
