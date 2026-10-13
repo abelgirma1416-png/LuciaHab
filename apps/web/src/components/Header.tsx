@@ -29,14 +29,14 @@ export const Header: React.FC<HeaderProps> = ({
         onClick={onBrandClick}
         role="button"
         tabIndex={0}
-        aria-label="GameVerse Home"
+        aria-label="Lucia Home"
         onKeyDown={(e) => e.key === 'Enter' && onBrandClick()}
       >
         <div className="brand-logo-icon">
           <Gamepad2 size={20} color="#fff" strokeWidth={2} />
         </div>
         <div className="brand-text-container">
-          <span className="brand-name">GameVerse</span>
+          <span className="brand-name">Lucia</span>
           <span className="brand-tagline">
             {language === 'am' ? 'የጨዋታ ማዕከል' : 'Gaming Hub'}
           </span>
