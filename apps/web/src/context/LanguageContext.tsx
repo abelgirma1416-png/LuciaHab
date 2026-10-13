@@ -60,6 +60,40 @@ const UI_STRINGS: Record<string, { en: string; am: string }> = {
   challenge_completed: { en: 'Completed', am: 'ተጠናቋል' },
   close: { en: 'Close', am: 'ዝጋ' },
 
+  // Turbo Math Difficulty & Mode
+  math_difficulty_title: { en: 'Select Difficulty', am: 'የፈተናውን ደረጃ ይምረጡ' },
+  math_difficulty_subtitle: {
+    en: 'Choose your math tier and session length to begin.',
+    am: 'ለመጀመር የሒሳብ ደረጃዎንና የጥያቄ ብዛት ይምረጡ።',
+  },
+  math_diff_easy: { en: 'Easy — Beginner', am: 'ቀላል — ጀማሪ' },
+  math_diff_easy_desc: {
+    en: 'Basic arithmetic, place value, simple fractions & everyday word problems.',
+    am: 'መሰረታዊ ስሌቶች፣ የቁጥር ቦታ ዋጋ፣ ቀላል ክፍልፋዮች እና ዕለታዊ የሒሳብ ጥያቄዎች።',
+  },
+  math_diff_med: { en: 'Medium — Intermediate', am: 'መካከለኛ — ሁለተኛ ደረጃ' },
+  math_diff_med_desc: {
+    en: 'Multi-step arithmetic, percentages, ratios, decimals, introductory algebra & geometry.',
+    am: 'ባለብዙ-ደረጃ ስሌት፣ ፐርሰንት፣ ንፅፅር፣ አስርዮሽ፣ አልጀብራ እና ጂኦሜትሪ።',
+  },
+  math_diff_hard: { en: 'Hard — Advanced', am: 'ከባድ — የላቀ' },
+  math_diff_hard_desc: {
+    en: 'University & competition-level calculus, algebra, topology, logic & applied math.',
+    am: 'የዩኒቨርሲቲና የውድድር ደረጃ ካልኩለስ፣ ከፍተኛ አልጀብራ፣ ቶፖሎጂ እና አፕላይድ ሒሳብ።',
+  },
+  math_qcount_title: { en: 'Question Count', am: 'የጥያቄዎች ብዛት' },
+  math_qcount_10: { en: '10 Questions (Sprint)', am: '10 ጥያቄዎች (ፈጣን)' },
+  math_qcount_20: { en: '20 Questions (Standard)', am: '20 ጥያቄዎች (መደበኛ)' },
+  math_qcount_50: { en: '50 Questions (Endurance)', am: '50 ጥያቄዎች (ረጅም)' },
+  math_start_challenge: { en: 'Start Challenge', am: 'ፈተናውን ጀምር' },
+  math_change_settings: { en: 'Change Level', am: 'ደረጃ ቀይር' },
+  math_question_progress: { en: 'Question', am: 'ጥያቄ' },
+  math_session_complete: { en: 'Challenge Completed!', am: 'ፈተናው ተጠናቋል!' },
+  math_bank_empty_error: {
+    en: 'Not enough questions available in the selected bank.',
+    am: 'በተመረጠው ደረጃ ውስጥ በቂ ጥያቄዎች አልተገኙም።',
+  },
+
   // Security & Disclaimers
   mock_data_notice: {
     en: '⚡ Note: In development mode. Real data will securely sync from Supabase PostgreSQL with server-side validation.',

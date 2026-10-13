@@ -37,6 +37,8 @@ export const GameIcon: React.FC<GameIconProps> = ({
       return <Layers size={size} strokeWidth={strokeWidth} color={color} className={className} />;
     case 'crown':
     case 'chess':
+    case 'checkers':
+    case 'dama':
       return <Crown size={size} strokeWidth={strokeWidth} color={color} className={className} />;
     case 'bookopen':
     case 'book':

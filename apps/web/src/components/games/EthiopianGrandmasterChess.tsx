@@ -36,6 +36,20 @@ interface MoveHistoryItem {
   color: 'w' | 'b';
 }
 
+interface ChessAnimationState {
+  from: Square;
+  to: Square;
+  deltaX: number;
+  deltaY: number;
+  castlingRook?: {
+    from: Square;
+    to: Square;
+    deltaX: number;
+    deltaY: number;
+  };
+  capturedSquare?: Square;
+}
+
 const PIECE_VALUES: Record<string, number> = {
   p: 1,
   n: 3,
@@ -89,9 +103,53 @@ export const EthiopianGrandmasterChess: React.FC<EthiopianGrandmasterChessProps>
   // Dialogs
   const [showRestartConfirm, setShowRestartConfirm] = useState<boolean>(false);
 
+  // Animation states
+  const [animatingMove, setAnimatingMove] = useState<ChessAnimationState | null>(null);
+  const [isAnimating, setIsAnimating] = useState<boolean>(false);
+  const animTimerRef = useRef<number | null>(null);
+
   // AI race condition token
   const gameSessionIdRef = useRef<number>(0);
   const historyScrollRef = useRef<HTMLDivElement>(null);
+
+  // Clean up animation timers on unmount
+  useEffect(() => {
+    return () => {
+      if (animTimerRef.current) {
+        window.clearTimeout(animTimerRef.current);
+      }
+    };
+  }, []);
+
+  // Board square rendering array
+  const ranks = useMemo(
+    () => (boardOrientation === 'w' ? [8, 7, 6, 5, 4, 3, 2, 1] : [1, 2, 3, 4, 5, 6, 7, 8]),
+    [boardOrientation]
+  );
+  const files = useMemo(
+    () => (boardOrientation === 'w' ? ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'] : ['h', 'g', 'f', 'e', 'd', 'c', 'b', 'a']),
+    [boardOrientation]
+  );
+
+  const getSquareDelta = useCallback(
+    (fromSq: Square, toSq: Square) => {
+      const fromFile = fromSq[0];
+      const fromRank = parseInt(fromSq[1], 10);
+      const toFile = toSq[0];
+      const toRank = parseInt(toSq[1], 10);
+
+      const fromColIdx = files.indexOf(fromFile);
+      const fromRowIdx = ranks.indexOf(fromRank);
+      const toColIdx = files.indexOf(toFile);
+      const toRowIdx = ranks.indexOf(toRank);
+
+      return {
+        deltaX: toColIdx - fromColIdx,
+        deltaY: toRowIdx - fromRowIdx,
+      };
+    },
+    [files, ranks]
+  );
 
   // Scroll move history on update
   useEffect(() => {
@@ -265,12 +323,132 @@ export const EthiopianGrandmasterChess: React.FC<EthiopianGrandmasterChessProps>
     return false;
   }, [chess, playMode, playerColor, soundEnabled]);
 
+  const triggerAiMoveRef = useRef<() => void>(() => {});
+
+  // Core unified animated move execution
+  const executeMoveWithAnimation = useCallback(
+    (
+      from: Square,
+      to: Square,
+      promotionPiece?: 'q' | 'r' | 'b' | 'n',
+      onComplete?: () => void
+    ) => {
+      try {
+        const movingPiece = chess.get(from);
+        if (!movingPiece) return;
+
+        const isReducedMotion =
+          typeof window !== 'undefined' &&
+          window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Castling animation detection
+        let castlingRook: ChessAnimationState['castlingRook'] | undefined;
+        let capturedSquare: Square | undefined;
+
+        if (movingPiece.type === 'k') {
+          if (from === 'e1' && to === 'g1') {
+            const rD = getSquareDelta('h1', 'f1');
+            castlingRook = { from: 'h1', to: 'f1', deltaX: rD.deltaX, deltaY: rD.deltaY };
+          } else if (from === 'e1' && to === 'c1') {
+            const rD = getSquareDelta('a1', 'd1');
+            castlingRook = { from: 'a1', to: 'd1', deltaX: rD.deltaX, deltaY: rD.deltaY };
+          } else if (from === 'e8' && to === 'g8') {
+            const rD = getSquareDelta('h8', 'f8');
+            castlingRook = { from: 'h8', to: 'f8', deltaX: rD.deltaX, deltaY: rD.deltaY };
+          } else if (from === 'e8' && to === 'c8') {
+            const rD = getSquareDelta('a8', 'd8');
+            castlingRook = { from: 'a8', to: 'd8', deltaX: rD.deltaX, deltaY: rD.deltaY };
+          }
+        }
+
+        // Capture detection (including en passant)
+        const targetPiece = chess.get(to);
+        if (targetPiece) {
+          capturedSquare = to;
+        } else if (movingPiece.type === 'p' && from[0] !== to[0]) {
+          const epSquare = `${to[0]}${from[1]}` as Square;
+          if (chess.get(epSquare)) {
+            capturedSquare = epSquare;
+          }
+        }
+
+        const mainDelta = getSquareDelta(from, to);
+
+        const commitMove = () => {
+          const moveResult = chess.move({
+            from,
+            to,
+            promotion: promotionPiece || 'q',
+          });
+
+          if (moveResult) {
+            setFen(chess.fen());
+            setSelectedSquare(null);
+            setPendingPromotion(null);
+            setLastMove({ from, to });
+            setHistory((prev) => [
+              ...prev,
+              {
+                san: moveResult.san,
+                from: moveResult.from,
+                to: moveResult.to,
+                color: moveResult.color,
+              },
+            ]);
+
+            if (chess.isCheck()) {
+              playChessSound('check', soundEnabled);
+            } else if (moveResult.captured) {
+              playChessSound('capture', soundEnabled);
+            } else {
+              playChessSound('move', soundEnabled);
+            }
+
+            setAnimatingMove(null);
+            setIsAnimating(false);
+
+            const gameOver = checkGameOverState();
+            if (onComplete) {
+              onComplete();
+            } else if (!gameOver && playMode === 'vs_computer' && chess.turn() !== playerColor) {
+              triggerAiMoveRef.current();
+            }
+          }
+        };
+
+        if (isReducedMotion) {
+          commitMove();
+        } else {
+          setIsAnimating(true);
+          setAnimatingMove({
+            from,
+            to,
+            deltaX: mainDelta.deltaX,
+            deltaY: mainDelta.deltaY,
+            castlingRook,
+            capturedSquare,
+          });
+
+          if (animTimerRef.current) window.clearTimeout(animTimerRef.current);
+          animTimerRef.current = window.setTimeout(() => {
+            commitMove();
+          }, 190);
+        }
+      } catch {
+        setIsAnimating(false);
+        setAnimatingMove(null);
+        playChessSound('illegal', soundEnabled);
+      }
+    },
+    [chess, soundEnabled, checkGameOverState, playMode, playerColor, getSquareDelta]
+  );
+
   // Trigger Computer Move
   const triggerAiMove = useCallback(() => {
     const currentSession = gameSessionIdRef.current;
     setIsAiThinking(true);
 
-    const delay = difficulty === 'easy' ? 350 : difficulty === 'medium' ? 450 : 600;
+    const delay = difficulty === 'easy' ? 320 : difficulty === 'medium' ? 420 : 550;
 
     window.setTimeout(() => {
       // Discard if session changed (restart/undo/new game)
@@ -286,87 +464,36 @@ export const EthiopianGrandmasterChess: React.FC<EthiopianGrandmasterChessProps>
 
       const bestMove = selectComputerMove(chess, difficulty);
       if (bestMove) {
-        const moveResult = chess.move(bestMove);
-        if (moveResult) {
-          setFen(chess.fen());
-          setLastMove({ from: moveResult.from, to: moveResult.to });
-          setHistory((prev) => [
-            ...prev,
-            {
-              san: moveResult.san,
-              from: moveResult.from,
-              to: moveResult.to,
-              color: moveResult.color,
-            },
-          ]);
-
-          // Audio
-          if (chess.isCheck()) {
-            playChessSound('check', soundEnabled);
-          } else if (moveResult.captured) {
-            playChessSound('capture', soundEnabled);
-          } else {
-            playChessSound('move', soundEnabled);
+        executeMoveWithAnimation(
+          bestMove.from as Square,
+          bestMove.to as Square,
+          bestMove.promotion as 'q' | 'r' | 'b' | 'n' | undefined,
+          () => {
+            setIsAiThinking(false);
           }
-
-          checkGameOverState();
-        }
+        );
+      } else {
+        setIsAiThinking(false);
       }
-
-      setIsAiThinking(false);
     }, delay);
-  }, [chess, difficulty, soundEnabled, checkGameOverState]);
+  }, [chess, difficulty, executeMoveWithAnimation]);
+
+  useEffect(() => {
+    triggerAiMoveRef.current = triggerAiMove;
+  }, [triggerAiMove]);
 
   // Make a player move
   const executeMove = useCallback(
     (from: Square, to: Square, promotionPiece?: 'q' | 'r' | 'b' | 'n') => {
-      try {
-        const moveResult = chess.move({
-          from,
-          to,
-          promotion: promotionPiece || 'q',
-        });
-
-        if (moveResult) {
-          setFen(chess.fen());
-          setSelectedSquare(null);
-          setPendingPromotion(null);
-          setLastMove({ from, to });
-          setHistory((prev) => [
-            ...prev,
-            {
-              san: moveResult.san,
-              from: moveResult.from,
-              to: moveResult.to,
-              color: moveResult.color,
-            },
-          ]);
-
-          // Sound
-          if (chess.isCheck()) {
-            playChessSound('check', soundEnabled);
-          } else if (moveResult.captured) {
-            playChessSound('capture', soundEnabled);
-          } else {
-            playChessSound('move', soundEnabled);
-          }
-
-          const gameOver = checkGameOverState();
-          if (!gameOver && playMode === 'vs_computer' && chess.turn() !== playerColor) {
-            triggerAiMove();
-          }
-        }
-      } catch {
-        playChessSound('illegal', soundEnabled);
-      }
+      executeMoveWithAnimation(from, to, promotionPiece);
     },
-    [chess, soundEnabled, checkGameOverState, playMode, playerColor, triggerAiMove]
+    [executeMoveWithAnimation]
   );
 
   // Square Click handler
   const handleSquareClick = useCallback(
     (square: Square) => {
-      if (isGameOver || isAiThinking) return;
+      if (isGameOver || isAiThinking || isAnimating) return;
 
       const turn = chess.turn();
 
@@ -418,12 +545,16 @@ export const EthiopianGrandmasterChess: React.FC<EthiopianGrandmasterChessProps>
         playChessSound('illegal', soundEnabled);
       }
     },
-    [chess, isGameOver, isAiThinking, playMode, playerColor, selectedSquare, legalMovesForSelected, executeMove, soundEnabled]
+    [chess, isGameOver, isAiThinking, isAnimating, playMode, playerColor, selectedSquare, legalMovesForSelected, executeMove, soundEnabled]
   );
 
   // Start new match
   const handleStartGame = () => {
     gameSessionIdRef.current += 1;
+    if (animTimerRef.current) window.clearTimeout(animTimerRef.current);
+    setAnimatingMove(null);
+    setIsAnimating(false);
+
     chess.reset();
     setFen(chess.fen());
     setSelectedSquare(null);
@@ -448,22 +579,17 @@ export const EthiopianGrandmasterChess: React.FC<EthiopianGrandmasterChessProps>
         if (currentSession !== gameSessionIdRef.current) return;
         const bestMove = selectComputerMove(chess, difficulty);
         if (bestMove) {
-          const moveResult = chess.move(bestMove);
-          if (moveResult) {
-            setFen(chess.fen());
-            setLastMove({ from: moveResult.from, to: moveResult.to });
-            setHistory([
-              {
-                san: moveResult.san,
-                from: moveResult.from,
-                to: moveResult.to,
-                color: moveResult.color,
-              },
-            ]);
-            playChessSound('move', soundEnabled);
-          }
+          executeMoveWithAnimation(
+            bestMove.from as Square,
+            bestMove.to as Square,
+            bestMove.promotion as 'q' | 'r' | 'b' | 'n' | undefined,
+            () => {
+              setIsAiThinking(false);
+            }
+          );
+        } else {
+          setIsAiThinking(false);
         }
-        setIsAiThinking(false);
       }, 500);
     }
   };
@@ -473,6 +599,9 @@ export const EthiopianGrandmasterChess: React.FC<EthiopianGrandmasterChessProps>
     if (isAiThinking || history.length === 0) return;
 
     gameSessionIdRef.current += 1; // cancel any pending AI moves
+    if (animTimerRef.current) window.clearTimeout(animTimerRef.current);
+    setAnimatingMove(null);
+    setIsAnimating(false);
 
     if (playMode === 'vs_computer') {
       // In computer mode, undo both computer reply and player move
@@ -514,6 +643,9 @@ export const EthiopianGrandmasterChess: React.FC<EthiopianGrandmasterChessProps>
   // Resign
   const handleResign = () => {
     if (isGameOver) return;
+    if (animTimerRef.current) window.clearTimeout(animTimerRef.current);
+    setAnimatingMove(null);
+    setIsAnimating(false);
     const currentTurn = chess.turn();
     const winner = currentTurn === 'w' ? 'b' : 'w';
 
@@ -540,9 +672,7 @@ export const EthiopianGrandmasterChess: React.FC<EthiopianGrandmasterChessProps>
     });
   };
 
-  // Board square rendering array
-  const ranks = boardOrientation === 'w' ? [8, 7, 6, 5, 4, 3, 2, 1] : [1, 2, 3, 4, 5, 6, 7, 8];
-  const files = boardOrientation === 'w' ? ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'] : ['h', 'g', 'f', 'e', 'd', 'c', 'b', 'a'];
+
 
   // Current turn indicator
   const currentTurn = chess.turn();
@@ -823,14 +953,62 @@ export const EthiopianGrandmasterChess: React.FC<EthiopianGrandmasterChessProps>
                           <span className="coord-file">{file}</span>
                         )}
 
-                        {/* Piece view */}
-                        {piece && (
-                          <ChessPieceView
-                            type={piece.type}
-                            color={piece.color}
-                            className={`board-piece ${isSelected ? 'floating' : ''}`}
-                          />
-                        )}
+                        {/* Piece view with strategic animation support */}
+                        {(() => {
+                          const isMovingPiece = animatingMove && animatingMove.from === square;
+                          const isMovingRook = animatingMove?.castlingRook && animatingMove.castlingRook.from === square;
+                          const isCapturedTarget = animatingMove?.capturedSquare && animatingMove.capturedSquare === square;
+                          const isDestination = animatingMove && animatingMove.to === square;
+
+                          if (isMovingPiece && piece) {
+                            return (
+                              <ChessPieceView
+                                type={piece.type}
+                                color={piece.color}
+                                className="board-piece animating-slide"
+                                style={{ '--dx': animatingMove.deltaX, '--dy': animatingMove.deltaY } as React.CSSProperties}
+                              />
+                            );
+                          }
+
+                          if (isMovingRook && piece) {
+                            return (
+                              <ChessPieceView
+                                type={piece.type}
+                                color={piece.color}
+                                className="board-piece animating-slide"
+                                style={{ '--dx': animatingMove.castlingRook?.deltaX ?? 0, '--dy': animatingMove.castlingRook?.deltaY ?? 0 } as React.CSSProperties}
+                              />
+                            );
+                          }
+
+                          if (isCapturedTarget && piece) {
+                            return (
+                              <ChessPieceView
+                                type={piece.type}
+                                color={piece.color}
+                                className="board-piece animating-captured-dissolve"
+                              />
+                            );
+                          }
+
+                          // Hide destination piece while moving piece is flying over to capture it
+                          if (isDestination && piece && !isMovingPiece && !isMovingRook) {
+                            return null;
+                          }
+
+                          if (piece) {
+                            return (
+                              <ChessPieceView
+                                type={piece.type}
+                                color={piece.color}
+                                className={`board-piece ${isSelected ? 'floating' : ''}`}
+                              />
+                            );
+                          }
+
+                          return null;
+                        })()}
 
                         {/* Legal move indicator */}
                         {isLegalMove && !isCapture && <span className="legal-dot" />}

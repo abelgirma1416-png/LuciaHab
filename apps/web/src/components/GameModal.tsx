@@ -3,10 +3,13 @@ import type { Game } from '../types';
 import { useLanguage } from '../context/useLanguage';
 import { BookOpen, ShieldCheck, X, Play } from 'lucide-react';
 import { GameIcon } from './GameIcon';
+import { LogicMasters } from './games/logic-masters/LogicMasters';
+
 import { TurboMathGame } from './games/TurboMathGame';
 import { EthiopianMindSprintGame } from './games/EthiopianMindSprintGame';
 import { HeritageMemoryMatrix } from './games/HeritageMemoryMatrix';
 import { EthiopianGrandmasterChess } from './games/EthiopianGrandmasterChess';
+import { DamaMasters } from './games/dama-masters/DamaMasters';
 
 interface GameModalProps {
   game: Game | null;
@@ -29,7 +32,9 @@ export const GameModal: React.FC<GameModalProps> = ({ game, onClose }) => {
   const isTrivia = game.id === 'ethiopian-mind-sprint-trivia';
   const isMemoryMatrix = game.id === 'heritage-memory-matrix';
   const isChess = game.id === 'ethiopian-grandmaster-chess';
-  const isPlayableGame = isTurboMath || isTrivia || isMemoryMatrix || isChess;
+  const isDama = game.id === 'dama-masters';
+  const isLogic = game.id === 'logic-masters';
+  const isPlayableGame = isTurboMath || isTrivia || isMemoryMatrix || isChess || isDama || isLogic;
 
   const handleClose = () => {
     setIsPlaying(false);
@@ -48,6 +53,10 @@ export const GameModal: React.FC<GameModalProps> = ({ game, onClose }) => {
           <HeritageMemoryMatrix onExit={() => setIsPlaying(false)} />
         ) : isPlaying && isChess ? (
           <EthiopianGrandmasterChess onExit={() => setIsPlaying(false)} />
+        ) : isPlaying && isLogic ? (
+            <LogicMasters onExit={() => setIsPlaying(false)} />
+          ) : isPlaying && isDama ? (
+          <DamaMasters onExit={() => setIsPlaying(false)} />
         ) : (
           <>
             <div className="modal-header">

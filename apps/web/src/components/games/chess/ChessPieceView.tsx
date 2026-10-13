@@ -5,9 +5,10 @@ interface ChessPieceViewProps {
   type: string;
   color: 'w' | 'b';
   className?: string;
+  style?: React.CSSProperties;
 }
 
-export const ChessPieceView: React.FC<ChessPieceViewProps> = ({ type, color, className }) => {
+export const ChessPieceView: React.FC<ChessPieceViewProps> = ({ type, color, className, style }) => {
   const key = `${color}${type.toUpperCase()}`;
   const svgHtml = CHESS_PIECE_SVGS[key];
 
@@ -18,6 +19,7 @@ export const ChessPieceView: React.FC<ChessPieceViewProps> = ({ type, color, cla
   return (
     <span
       className={`chess-piece-svg ${className || ''}`}
+      style={style}
       aria-label={`${color === 'w' ? 'White' : 'Black'} ${type}`}
       dangerouslySetInnerHTML={{ __html: svgHtml }}
     />

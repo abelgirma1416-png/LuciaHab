@@ -7,6 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
+    "test:math": "node src/tests/mathQuestionBank.test.mjs",
+    "test:checkers": "node --experimental-strip-types src/components/games/dama-masters/__tests__/checkersEngine.test.ts",
+    "test": "npm run test:math && npm run test:checkers",
     "preview": "vite preview"
   },
   "dependencies": {

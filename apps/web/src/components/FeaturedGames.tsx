@@ -27,7 +27,7 @@ export const FeaturedGames: React.FC<FeaturedGamesProps> = ({
               {t('featured_games_title')}
             </h2>
             <span className="badge badge-purple" style={{ fontSize: '0.65rem' }}>
-              4 Titles
+              {games.filter((g) => g.status === 'available').length} {language === 'am' ? 'ጨዋታዎች' : 'Titles'}
             </span>
           </div>
           <p className="section-subtitle">{t('featured_games_desc')}</p>

@@ -1,0 +1,603 @@
+// ─────────────────────────────────────────────────────────────────────────────
+//  Logic Masters – Question Bank
+//  Every question: verified answer, plausible distractors, bilingual text.
+// ─────────────────────────────────────────────────────────────────────────────
+import type { LogicQuestion } from './logicTypes';
+
+export const LOGIC_QUESTIONS: LogicQuestion[] = [
+  // ── EASY ──────────────────────────────────────────────────────────────────
+
+  // Number Sequences – Easy
+  {
+    id: 'lm_001',
+    category: 'number_sequence',
+    difficulty: 'easy',
+    question: 'What comes next in the sequence: 2, 4, 6, 8, ?',
+    questionAm: 'በዚህ ቅደም ተከተል ቀጥሎ የሚመጣው ቁጥር ምንድን ነው፡ 2, 4, 6, 8, ?',
+    options: ['9', '10', '11', '12'],
+    optionsAm: ['9', '10', '11', '12'],
+    correctAnswer: '10',
+    explanation: 'The rule is +2. Each number increases by 2: 2→4→6→8→10.',
+    explanationAm: 'ህጉ +2 ነው። እያንዳንዱ ቁጥር በ2 ይጨምራል፡ 2→4→6→8→10።',
+    estimatedSeconds: 15,
+  },
+  {
+    id: 'lm_002',
+    category: 'number_sequence',
+    difficulty: 'easy',
+    question: 'What comes next: 1, 3, 5, 7, ?',
+    questionAm: 'ቀጥሎ የሚመጣው ቁጥር ምንድን ነው፡ 1, 3, 5, 7, ?',
+    options: ['8', '9', '10', '11'],
+    optionsAm: ['8', '9', '10', '11'],
+    correctAnswer: '9',
+    explanation: 'The rule is +2 (odd numbers). After 7 comes 9.',
+    explanationAm: 'ህጉ +2 ነው (ነጠላ ቁጥሮች)። ከ7 በኋላ 9 ይመጣል።',
+    estimatedSeconds: 15,
+  },
+  {
+    id: 'lm_003',
+    category: 'number_sequence',
+    difficulty: 'easy',
+    question: 'What comes next: 5, 10, 15, 20, ?',
+    questionAm: 'ቀጥሎ የሚመጣው ቁጥር ምንድን ነው፡ 5, 10, 15, 20, ?',
+    options: ['22', '24', '25', '30'],
+    optionsAm: ['22', '24', '25', '30'],
+    correctAnswer: '25',
+    explanation: 'The rule is +5 (multiples of 5). After 20 comes 25.',
+    explanationAm: 'ህጉ +5 ነው (የ5 ብዜቶች)። ከ20 በኋላ 25 ይመጣል።',
+    estimatedSeconds: 15,
+  },
+  {
+    id: 'lm_004',
+    category: 'number_sequence',
+    difficulty: 'easy',
+    question: 'What comes next: 100, 90, 80, 70, ?',
+    questionAm: 'ቀጥሎ የሚመጣው ቁጥር ምንድን ነው፡ 100, 90, 80, 70, ?',
+    options: ['65', '60', '50', '55'],
+    optionsAm: ['65', '60', '50', '55'],
+    correctAnswer: '60',
+    explanation: 'The rule is −10. Each number decreases by 10: 100→90→80→70→60.',
+    explanationAm: 'ህጉ −10 ነው። እያንዳንዱ ቁጥር በ10 ይቀንሳል፡ 100→90→80→70→60።',
+    estimatedSeconds: 15,
+  },
+
+  // Pattern Recognition – Easy
+  {
+    id: 'lm_005',
+    category: 'pattern_recognition',
+    difficulty: 'easy',
+    question: 'The pattern is: ● ○ ● ○ ● ○ ?  What comes next?',
+    questionAm: 'ምልክቱ ቅደም ተከተል፡ ● ○ ● ○ ● ○ ?  ቀጥሎ ምን ይመጣል?',
+    options: ['●', '○', '◑', '◐'],
+    optionsAm: ['● (ጥቁር ክበብ)', '○ (ባዶ ክበብ)', '◑ (ግማሽ-ጥቁር)', '◐ (ሌላ ክበብ)'],
+    correctAnswer: '●',
+    explanation: 'The pattern alternates ●○. After ○ comes ●.',
+    explanationAm: 'ምልክቱ ●○ ተደጋጋሚ ነው። ከ○ በኋላ ● ይመጣል።',
+    estimatedSeconds: 20,
+  },
+  {
+    id: 'lm_006',
+    category: 'pattern_recognition',
+    difficulty: 'easy',
+    question: 'Which color comes next: Red, Blue, Red, Blue, Red, ?',
+    questionAm: 'ቀጥሎ የሚመጣው ቀለም ምንድን ነው፡ ቀይ, ሰማያዊ, ቀይ, ሰማያዊ, ቀይ, ?',
+    options: ['Red', 'Blue', 'Green', 'Yellow'],
+    optionsAm: ['ቀይ', 'ሰማያዊ', 'አረንጓዴ', 'ቢጫ'],
+    correctAnswer: 'Blue',
+    explanation: 'The pattern alternates Red-Blue. After Red comes Blue.',
+    explanationAm: 'ምልክቱ ቀይ-ሰማያዊ ተደጋጋሚ ነው። ከቀይ በኋላ ሰማያዊ ይመጣል።',
+    estimatedSeconds: 15,
+  },
+
+  // Odd One Out – Easy
+  {
+    id: 'lm_007',
+    category: 'odd_one_out',
+    difficulty: 'easy',
+    question: 'Which number does NOT belong: 2, 4, 7, 8?',
+    questionAm: 'የማይጣጣም ቁጥር ምንድን ነው፡ 2, 4, 7, 8?',
+    options: ['2', '4', '7', '8'],
+    optionsAm: ['2', '4', '7', '8'],
+    correctAnswer: '7',
+    explanation: '2, 4, and 8 are even numbers. 7 is odd and does not belong.',
+    explanationAm: '2, 4, እና 8 ጥንድ ቁጥሮች ናቸው። 7 ነጠላ ቁጥር ስለሆነ አይጣጣምም።',
+    estimatedSeconds: 20,
+  },
+  {
+    id: 'lm_008',
+    category: 'odd_one_out',
+    difficulty: 'easy',
+    question: 'Which does NOT belong: Dog, Cat, Fish, Rose?',
+    questionAm: 'የማይጣጣም ቃል ምንድን ነው፡ ውሻ, ድመት, ዓሣ, ሮዝ?',
+    options: ['Dog', 'Cat', 'Fish', 'Rose'],
+    optionsAm: ['ውሻ', 'ድመት', 'ዓሣ', 'ሮዝ (አበባ)'],
+    correctAnswer: 'Rose',
+    explanation: 'Dog, Cat, and Fish are animals. Rose is a flower.',
+    explanationAm: 'ውሻ, ድመት, እና ዓሣ እንስሳት ናቸው። ሮዝ ግን አበባ ነው።',
+    estimatedSeconds: 15,
+  },
+  {
+    id: 'lm_009',
+    category: 'odd_one_out',
+    difficulty: 'easy',
+    question: 'Which does NOT belong: 3, 6, 9, 14?',
+    questionAm: 'የማይጣጣም ቁጥር ምንድን ነው፡ 3, 6, 9, 14?',
+    options: ['3', '6', '9', '14'],
+    optionsAm: ['3', '6', '9', '14'],
+    correctAnswer: '14',
+    explanation: '3, 6, and 9 are multiples of 3. 14 is not.',
+    explanationAm: '3, 6, እና 9 የ3 ብዜቶች ናቸው። 14 ግን የ3 ብዜት አይደለም።',
+    estimatedSeconds: 20,
+  },
+
+  // Math Logic – Easy
+  {
+    id: 'lm_010',
+    category: 'math_logic',
+    difficulty: 'easy',
+    question: 'If 3 cats eat 3 fish in 3 minutes, how many fish do 6 cats eat in 6 minutes?',
+    questionAm: '3 ድመቶች በ3 ደቂቃ ውስጥ 3 ዓሣ ከበሉ, 6 ድመቶች በ6 ደቂቃ ውስጥ ስንት ዓሣ ይበላሉ?',
+    options: ['6', '9', '12', '18'],
+    optionsAm: ['6', '9', '12', '18'],
+    correctAnswer: '12',
+    explanation: 'Each cat eats 1 fish in 3 minutes, so in 6 minutes it eats 2 fish. 6 cats × 2 fish = 12.',
+    explanationAm: 'እያንዳንዱ ድመት በ3 ደቂቃ 1 ዓሣ ይበላል, ስለዚህ በ6 ደቂቃ 2 ዓሣ ይበላል። 6 ድመቶች × 2 = 12።',
+    estimatedSeconds: 25,
+  },
+  {
+    id: 'lm_011',
+    category: 'math_logic',
+    difficulty: 'easy',
+    question: 'A dozen eggs cost 24 birr. How much do 6 eggs cost?',
+    questionAm: 'ሙሉ እንቁላሎች (12 ፍሬ) 24 ብር ሲያወጡ, 6 እንቁላሎች ስንት ብር ያወጣሉ?',
+    options: ['6 birr', '10 birr', '12 birr', '14 birr'],
+    optionsAm: ['6 ብር', '10 ብር', '12 ብር', '14 ብር'],
+    correctAnswer: '12 birr',
+    explanation: '24 birr ÷ 12 = 2 birr each. 6 × 2 = 12 birr.',
+    explanationAm: '24 ÷ 12 = 2 ብር በፍሬ። 6 × 2 = 12 ብር።',
+    estimatedSeconds: 20,
+  },
+
+  // Deductive Reasoning – Easy
+  {
+    id: 'lm_012',
+    category: 'deductive_reasoning',
+    difficulty: 'easy',
+    question: 'All birds have wings. A penguin is a bird. Therefore, a penguin ___.',
+    questionAm: 'ሁሉም ወፎች ክንፍ አላቸው። ፔንግዊን ወፍ ነው። ስለዚህ ፔንግዊን ___።',
+    options: ['can fly', 'has wings', 'cannot swim', 'is a mammal'],
+    optionsAm: ['መብረር ይችላል', 'ክንፍ አለው', 'መዋኘት አይችልም', 'አጥቢ እንስሳ ነው'],
+    correctAnswer: 'has wings',
+    explanation: 'If all birds have wings and a penguin is a bird, it must have wings. Whether it can fly is a separate question.',
+    explanationAm: 'ሁሉም ወፎች ክንፍ ካላቸው እና ፔንግዊን ወፍ ከሆነ, ክንፍ ሊኖረው ይገባል።',
+    estimatedSeconds: 25,
+  },
+  {
+    id: 'lm_013',
+    category: 'deductive_reasoning',
+    difficulty: 'easy',
+    question: 'Abebe is taller than Bekele. Chala is shorter than Bekele. Who is tallest?',
+    questionAm: 'አበበ ከበቀለ ረዘም ያለ ነው። ቻላ ከበቀለ ያጠረ ነው። ማን ረዘም ያለ ነው?',
+    options: ['Abebe', 'Bekele', 'Chala', 'Cannot tell'],
+    optionsAm: ['አበበ', 'በቀለ', 'ቻላ', 'ለማወቅ አይቻልም'],
+    correctAnswer: 'Abebe',
+    explanation: 'Abebe > Bekele > Chala, so Abebe is the tallest.',
+    explanationAm: 'አበበ > በቀለ > ቻላ, ስለዚህ አበበ ረዘም ያለ ነው።',
+    estimatedSeconds: 20,
+  },
+
+  // Spatial/Sequence – Easy
+  {
+    id: 'lm_014',
+    category: 'spatial_sequence',
+    difficulty: 'easy',
+    question: 'In a row of 5 seats, Hana is in seat 3. How many seats are to her right?',
+    questionAm: 'ከ5 ወንበሮች ረድፍ ውስጥ ሃና በ3ኛ ወንበር ላይ ናት። ወደ ቀኝ ስንት ወንበሮች አሉ?',
+    options: ['1', '2', '3', '4'],
+    optionsAm: ['1', '2', '3', '4'],
+    correctAnswer: '2',
+    explanation: 'Seats 4 and 5 are to her right, which is 2 seats.',
+    explanationAm: 'ወንበሮች 4 እና 5 ወደ ቀኝዋ ናቸው, ስለዚህ 2 ወንበሮች።',
+    estimatedSeconds: 20,
+  },
+  {
+    id: 'lm_015',
+    category: 'spatial_sequence',
+    difficulty: 'easy',
+    question: 'A 3×3 grid has 9 cells. How many cells share a corner with the centre cell?',
+    questionAm: 'የ3×3 ሳጥን 9 ክፍሎች አሉት። ከማዕከሉ ክፍል ጋር ጥግ የሚጋሩ ስንት ክፍሎች ናቸው?',
+    options: ['2', '3', '4', '8'],
+    optionsAm: ['2', '3', '4', '8'],
+    correctAnswer: '4',
+    explanation: 'The 4 corner cells of the grid share a corner with the centre cell.',
+    explanationAm: '4ቱ ጥጋጥጋ ክፍሎች ከማዕከሉ ክፍል ጋር ጥግ ይጋራሉ።',
+    estimatedSeconds: 25,
+  },
+
+  // ── MEDIUM ─────────────────────────────────────────────────────────────────
+
+  // Number Sequences – Medium
+  {
+    id: 'lm_016',
+    category: 'number_sequence',
+    difficulty: 'medium',
+    question: 'What comes next: 3, 6, 12, 24, ?',
+    questionAm: 'ቀጥሎ የሚመጣው ቁጥር ምንድን ነው፡ 3, 6, 12, 24, ?',
+    options: ['36', '48', '40', '30'],
+    optionsAm: ['36', '48', '40', '30'],
+    correctAnswer: '48',
+    explanation: 'The rule is ×2. Each number doubles: 3→6→12→24→48.',
+    explanationAm: 'ህጉ ×2 ነው። እያንዳንዱ ቁጥር ሁለት እጥፍ ይሆናል፡ 3→6→12→24→48።',
+    estimatedSeconds: 30,
+  },
+  {
+    id: 'lm_017',
+    category: 'number_sequence',
+    difficulty: 'medium',
+    question: 'What comes next: 1, 4, 9, 16, ?',
+    questionAm: 'ቀጥሎ የሚመጣው ቁጥር ምንድን ነው፡ 1, 4, 9, 16, ?',
+    options: ['20', '24', '25', '36'],
+    optionsAm: ['20', '24', '25', '36'],
+    correctAnswer: '25',
+    explanation: 'These are perfect squares: 1²=1, 2²=4, 3²=9, 4²=16, 5²=25.',
+    explanationAm: 'እነዚህ ፍጹም ካሬዎች ናቸው፡ 1²=1, 2²=4, 3²=9, 4²=16, 5²=25።',
+    estimatedSeconds: 35,
+  },
+  {
+    id: 'lm_018',
+    category: 'number_sequence',
+    difficulty: 'medium',
+    question: 'What comes next: 1, 1, 2, 3, 5, 8, ?',
+    questionAm: 'ቀጥሎ የሚመጣው ቁጥር ምንድን ነው፡ 1, 1, 2, 3, 5, 8, ?',
+    options: ['10', '11', '13', '16'],
+    optionsAm: ['10', '11', '13', '16'],
+    correctAnswer: '13',
+    explanation: 'Fibonacci sequence: each term is the sum of the two before it. 5+8=13.',
+    explanationAm: 'ፊቦናቺ ቅደም ተከተል፡ እያንዳንዱ ቁጥር ከፊቱ ካሉ ሁለት ቁጥሮች ድምር ነው። 5+8=13።',
+    estimatedSeconds: 40,
+  },
+  {
+    id: 'lm_019',
+    category: 'number_sequence',
+    difficulty: 'medium',
+    question: 'What comes next: 2, 5, 10, 17, 26, ?',
+    questionAm: 'ቀጥሎ የሚመጣው ቁጥር ምንድን ነው፡ 2, 5, 10, 17, 26, ?',
+    options: ['33', '35', '37', '40'],
+    optionsAm: ['33', '35', '37', '40'],
+    correctAnswer: '37',
+    explanation: 'Differences: +3, +5, +7, +9, +11. The differences increase by 2 each time. 26+11=37.',
+    explanationAm: 'ልዩነቶቹ፡ +3, +5, +7, +9, +11 ናቸው። ልዩነቱ በ2 ይጨምራል። 26+11=37።',
+    estimatedSeconds: 45,
+  },
+
+  // Pattern Recognition – Medium
+  {
+    id: 'lm_020',
+    category: 'pattern_recognition',
+    difficulty: 'medium',
+    question: 'In the pattern A1 B2 C3 D4 E5, what letter-number pair comes after E5?',
+    questionAm: 'A1 B2 C3 D4 E5 ቅደም ተከተልን ተከትሎ ከE5 በኋላ የሚመጣው ምንድን ነው?',
+    options: ['F5', 'F6', 'G6', 'E6'],
+    optionsAm: ['F5', 'F6', 'G6', 'E6'],
+    correctAnswer: 'F6',
+    explanation: 'Letters advance alphabetically (A→B→…→F) and numbers increase by 1 (1→2→…→6).',
+    explanationAm: 'ፊደሎቹ ፊደሎቹ (A→B→…→F) ቅደም ተከተላቸውን ይጠብቃሉ, ቁጥሮቹ ደግሞ በ1 ይጨምራሉ (1→2→…→6)።',
+    estimatedSeconds: 30,
+  },
+  {
+    id: 'lm_021',
+    category: 'pattern_recognition',
+    difficulty: 'medium',
+    question: 'Row 1: 1 2 3. Row 2: 4 5 6. Row 3: 7 8 ?. What is the missing number?',
+    questionAm: 'ረድፍ 1: 1 2 3. ረድፍ 2: 4 5 6. ረድፍ 3: 7 8 ?. የጠፋው ቁጥር ምንድን ነው?',
+    options: ['8', '9', '10', '12'],
+    optionsAm: ['8', '9', '10', '12'],
+    correctAnswer: '9',
+    explanation: 'Numbers fill sequentially left-to-right, row by row. After 8 comes 9.',
+    explanationAm: 'ቁጥሮቹ ከግራ ወደ ቀኝ፣ ረድፍ በረድፍ ይሞሉ። ከ8 በኋላ 9 ይመጣል።',
+    estimatedSeconds: 30,
+  },
+
+  // Deductive Reasoning – Medium
+  {
+    id: 'lm_022',
+    category: 'deductive_reasoning',
+    difficulty: 'medium',
+    question: 'Liya, Meron, and Nati each have a different pet: a cat, a dog, and a fish. Liya does not have a dog. Meron does not have a cat or a fish. Who has the cat?',
+    questionAm: 'ሊያ, ሜሮን, እና ናቲ እያንዳንዳቸው የተለያዩ እንስሳት አሏቸው፡ ድመት, ውሻ, እና ዓሣ። ሊያ ውሻ የላትም። ሜሮን ድመትም ዓሣም የላትም። ሊያ ምን አላት?',
+    options: ['Dog', 'Cat', 'Fish', 'None'],
+    optionsAm: ['ውሻ', 'ድመት', 'ዓሣ', 'ምንም'],
+    correctAnswer: 'Fish',
+    explanation: 'Meron has the dog (only option left for her). Liya has no dog, so she has cat or fish. Since Meron has the dog, Liya and Nati have cat and fish. Liya cannot have a dog → she has cat or fish. Nati takes the remaining. Working through: Meron=dog, Liya=fish, Nati=cat.',
+    explanationAm: 'ሜሮን ውሻ አላት (ቀሪ አማራጭ ብቻ)። ሊያ ውሻ ስለሌላት ድመት ወይም ዓሣ አላት። ሜሮን=ውሻ, ሊያ=ዓሣ, ናቲ=ድመት።',
+    estimatedSeconds: 50,
+  },
+  {
+    id: 'lm_023',
+    category: 'deductive_reasoning',
+    difficulty: 'medium',
+    question: 'Four students scored 60, 70, 80, 90. The average is 75. If the top scorer is removed, what is the new average?',
+    questionAm: '4 ተማሪዎች 60, 70, 80, 90 ነጥብ አስመዘገቡ። አማካዩ 75 ነው። ከፍተኛ ውጤት ያለው ከተወሰደ, አዲሱ አማካይ ስንት ነው?',
+    options: ['65', '70', '75', '80'],
+    optionsAm: ['65', '70', '75', '80'],
+    correctAnswer: '70',
+    explanation: 'Removing 90 leaves 60+70+80=210. 210÷3=70.',
+    explanationAm: '90 ሲወሰድ 60+70+80=210 ይቀራል። 210÷3=70።',
+    estimatedSeconds: 40,
+  },
+
+  // Odd One Out – Medium
+  {
+    id: 'lm_024',
+    category: 'odd_one_out',
+    difficulty: 'medium',
+    question: 'Which does NOT belong: 121, 144, 169, 180?',
+    questionAm: 'የማይጣጣም ቁጥር ምንድን ነው፡ 121, 144, 169, 180?',
+    options: ['121', '144', '169', '180'],
+    optionsAm: ['121', '144', '169', '180'],
+    correctAnswer: '180',
+    explanation: '121=11², 144=12², 169=13² are perfect squares. 180 is not.',
+    explanationAm: '121=11², 144=12², 169=13² ፍጹም ካሬዎች ናቸው። 180 ፍጹም ካሬ አይደለም።',
+    estimatedSeconds: 35,
+  },
+  {
+    id: 'lm_025',
+    category: 'odd_one_out',
+    difficulty: 'medium',
+    question: 'Which does NOT belong: 2, 3, 5, 9, 11?',
+    questionAm: 'የማይጣጣም ቁጥር ምንድን ነው፡ 2, 3, 5, 9, 11?',
+    options: ['2', '3', '5', '9'],
+    optionsAm: ['2', '3', '5', '9'],
+    correctAnswer: '9',
+    explanation: '2, 3, 5, and 11 are prime numbers. 9=3×3 is not prime.',
+    explanationAm: '2, 3, 5, እና 11 ዋናዊ ቁጥሮች ናቸው። 9=3×3 ዋናዊ ቁጥር አይደለም።',
+    estimatedSeconds: 35,
+  },
+
+  // Math Logic – Medium
+  {
+    id: 'lm_026',
+    category: 'math_logic',
+    difficulty: 'medium',
+    question: 'A snail climbs 3 m per day and slides back 1 m at night. How many days to climb out of a 10 m well?',
+    questionAm: 'ሽሮ ቀን ቀን 3 ሜትር ወጣ ወጣ ያደርጋል, ሌሊት ግን 1 ሜትር ይወርዳል። ከ10 ሜትር ጉድጓድ ለመውጣት ስንት ቀናት ይወስዳል?',
+    options: ['4 days', '5 days', '8 days', '10 days'],
+    optionsAm: ['4 ቀናት', '5 ቀናት', '8 ቀናት', '10 ቀናት'],
+    correctAnswer: '5 days',
+    explanation: 'Net gain per day = 3−1 = 2 m. After day 4: 8 m. On day 5, it climbs 3 m to reach 11 m, escaping the well. Answer: 5 days.',
+    explanationAm: 'ዕለታዊ ትርፍ = 3−1 = 2 ሜ. ከ4 ቀናት በኋላ፡ 8 ሜ. በ5ኛ ቀን 3 ሜ ወጥቶ 11 ሜ ይደርሳል። መልስ፡ 5 ቀናት።',
+    estimatedSeconds: 50,
+  },
+  {
+    id: 'lm_027',
+    category: 'math_logic',
+    difficulty: 'medium',
+    question: 'If A + B = 10, B + C = 14, and A + C = 12, what is A + B + C?',
+    questionAm: 'A + B = 10, B + C = 14, እና A + C = 12 ከሆነ, A + B + C = ስንት ነው?',
+    options: ['18', '36', '24', '28'],
+    optionsAm: ['18', '36', '24', '28'],
+    correctAnswer: '18',
+    explanation: '(A+B) + (B+C) + (A+C) = 2(A+B+C) = 36, so A+B+C = 18.',
+    explanationAm: '(A+B) + (B+C) + (A+C) = 2(A+B+C) = 36, ስለዚህ A+B+C = 18።',
+    estimatedSeconds: 50,
+  },
+
+  // Spatial – Medium
+  {
+    id: 'lm_028',
+    category: 'spatial_sequence',
+    difficulty: 'medium',
+    question: 'A 4×4 grid has how many 2×2 sub-grids?',
+    questionAm: 'የ4×4 ሳጥን ውስጥ ስንት 2×2 ንዑስ ሳጥኖች አሉ?',
+    options: ['4', '6', '8', '9'],
+    optionsAm: ['4', '6', '8', '9'],
+    correctAnswer: '9',
+    explanation: 'The top-left corner of a 2×2 block can be at rows 1–3 and columns 1–3, giving 3×3=9 positions.',
+    explanationAm: 'የ2×2 ሳጥን የላይ-ግራ ጥጋጥጋ ከረድፍ 1-3 እና አምድ 1-3 ላይ ሊሆን ይችላል, ይህ 3×3=9 ቦታ ይሰጣል።',
+    estimatedSeconds: 45,
+  },
+
+  // ── HARD ──────────────────────────────────────────────────────────────────
+
+  // Number Sequences – Hard
+  {
+    id: 'lm_029',
+    category: 'number_sequence',
+    difficulty: 'hard',
+    question: 'What comes next: 2, 3, 5, 7, 11, 13, ?',
+    questionAm: 'ቀጥሎ የሚመጣው ቁጥር ምንድን ነው፡ 2, 3, 5, 7, 11, 13, ?',
+    options: ['14', '15', '17', '19'],
+    optionsAm: ['14', '15', '17', '19'],
+    correctAnswer: '17',
+    explanation: 'These are consecutive prime numbers: 2, 3, 5, 7, 11, 13, 17.',
+    explanationAm: 'እነዚህ ተከታታይ ዋናዊ ቁጥሮች ናቸው፡ 2, 3, 5, 7, 11, 13, 17።',
+    estimatedSeconds: 50,
+  },
+  {
+    id: 'lm_030',
+    category: 'number_sequence',
+    difficulty: 'hard',
+    question: 'What comes next: 1, 8, 27, 64, 125, ?',
+    questionAm: 'ቀጥሎ የሚመጣው ቁጥር ምንድን ነው፡ 1, 8, 27, 64, 125, ?',
+    options: ['150', '196', '216', '225'],
+    optionsAm: ['150', '196', '216', '225'],
+    correctAnswer: '216',
+    explanation: 'These are perfect cubes: 1³=1, 2³=8, 3³=27, 4³=64, 5³=125, 6³=216.',
+    explanationAm: 'እነዚህ ፍጹም ኪዩቦች ናቸው፡ 1³=1, 2³=8, 3³=27, 4³=64, 5³=125, 6³=216።',
+    estimatedSeconds: 55,
+  },
+  {
+    id: 'lm_031',
+    category: 'number_sequence',
+    difficulty: 'hard',
+    question: 'What comes next: 3, 7, 13, 21, 31, ?',
+    questionAm: 'ቀጥሎ የሚመጣው ቁጥር ምንድን ነው፡ 3, 7, 13, 21, 31, ?',
+    options: ['40', '41', '43', '45'],
+    optionsAm: ['40', '41', '43', '45'],
+    correctAnswer: '43',
+    explanation: 'Differences: +4, +6, +8, +10, +12. Second differences are constant (+2). 31+12=43.',
+    explanationAm: 'ልዩነቶቹ፡ +4, +6, +8, +10, +12 ናቸው። ሁለተኛ ልዩነቶቹ ቋሚ ናቸው (+2)። 31+12=43።',
+    estimatedSeconds: 60,
+  },
+  {
+    id: 'lm_032',
+    category: 'number_sequence',
+    difficulty: 'hard',
+    question: 'What is the 10th term of the sequence: 4, 7, 10, 13, …?',
+    questionAm: 'ቅደም ተከተሉ 4, 7, 10, 13, … ከሆነ 10ኛ አባሉ ምንድን ነው?',
+    options: ['28', '30', '31', '33'],
+    optionsAm: ['28', '30', '31', '33'],
+    correctAnswer: '31',
+    explanation: 'Arithmetic sequence with first term 4 and common difference 3. 10th term = 4 + (10−1)×3 = 4+27 = 31.',
+    explanationAm: 'ቅደም ተከተሉ የ3 ልዩነት ያለው አርቲሜቲክ ቅደም ተከተል ነው። 10ኛ አባሉ = 4 + (10−1)×3 = 4+27 = 31።',
+    estimatedSeconds: 60,
+  },
+
+  // Pattern Recognition – Hard
+  {
+    id: 'lm_033',
+    category: 'pattern_recognition',
+    difficulty: 'hard',
+    question: 'Study the pattern: (1,2), (2,4), (3,6), (4,?). What is the missing value?',
+    questionAm: 'ምልክቱ ቅደም ተከተል፡ (1,2), (2,4), (3,6), (4,?). የጠፋው ዋጋ ምንድን ነው?',
+    options: ['6', '7', '8', '9'],
+    optionsAm: ['6', '7', '8', '9'],
+    correctAnswer: '8',
+    explanation: 'The second value in each pair is twice the first: (n, 2n). For (4, ?): ?=2×4=8.',
+    explanationAm: 'ሁለተኛው ዋጋ የመጀመሪያው ሁለት እጥፍ ነው (n, 2n)። (4, ?) ሲሆን ?=2×4=8።',
+    estimatedSeconds: 50,
+  },
+  {
+    id: 'lm_034',
+    category: 'pattern_recognition',
+    difficulty: 'hard',
+    question: 'In a triangle pattern, row 1 has 1 dot, row 2 has 3, row 3 has 6, row 4 has 10. How many dots in row 5?',
+    questionAm: 'ሶስት ማዕዘን ምልክቱ ቅደም ተከተልን ተከትሎ, ረድፍ 1 = 1, ረድፍ 2 = 3, ረድፍ 3 = 6, ረድፍ 4 = 10. ረድፍ 5 ስንት ነጥቦች ይኖሩታል?',
+    options: ['12', '14', '15', '20'],
+    optionsAm: ['12', '14', '15', '20'],
+    correctAnswer: '15',
+    explanation: 'These are triangular numbers: row n has n(n+1)/2 dots. Row 5: 5×6/2=15.',
+    explanationAm: 'እነዚህ ሶስት ማዕዘናዊ ቁጥሮች ናቸው፡ ረድፍ n = n(n+1)/2 ነጥቦች። ረድፍ 5: 5×6/2=15።',
+    estimatedSeconds: 60,
+  },
+
+  // Deductive Reasoning – Hard
+  {
+    id: 'lm_035',
+    category: 'deductive_reasoning',
+    difficulty: 'hard',
+    question: 'Five runners finish in order: Ana, Beki, Chala, Dagi, Elsa. Beki finishes before Chala. Dagi finishes after Elsa but before Ana. Which finish position is Elsa in?',
+    questionAm: '5 ሯጮች ቅደም ተከተሉ፡ አና, ቤኪ, ቻላ, ዳጊ, ኤልሳ ናቸው ብሎ ቢጠቀስ: ቤኪ ከቻላ ቀድሞ ጨርሷል። ዳጊ ከኤልሳ ዘግይቶ ጨርሷል ግን ከአና ቀድሞ ጨርሷል። ኤልሳ ስንተኛ ቦታ አጠናቀቀች?',
+    options: ['1st', '2nd', '3rd', '4th'],
+    optionsAm: ['1ኛ', '2ኛ', '3ኛ', '4ኛ'],
+    correctAnswer: '3rd',
+    explanation: 'From the clues: Dagi finishes after Elsa and before Ana. So Elsa is before Dagi, who is before Ana. Combined with Beki before Chala, one valid order is: Beki, Chala, Elsa, Dagi, Ana — placing Elsa 3rd.',
+    explanationAm: 'ፍንጮቹ፡ ዳጊ ከኤልሳ በኋላ, ከአና ቀድሞ ጨርሷል። ቤኪ ከቻላ ቀድሟል። አንድ ትክክለኛ ቅደም ተከተል፡ ቤኪ, ቻላ, ኤልሳ, ዳጊ, አና — ኤልሳ 3ኛ ናት።',
+    estimatedSeconds: 75,
+  },
+  {
+    id: 'lm_036',
+    category: 'deductive_reasoning',
+    difficulty: 'hard',
+    question: 'A box has red and blue balls. 1/3 are red. If 6 red balls are added, half become red. How many balls were originally in the box?',
+    questionAm: 'ሳጥን ውስጥ ቀይ እና ሰማያዊ ኳሶች አሉ። 1/3 ቀይ ናቸው። 6 ቀይ ኳሶች ከተጨመሩ, ግማሹ ቀይ ይሆናሉ። መጀመሪያ ስንት ኳሶች ነበሩ?',
+    options: ['12', '18', '24', '36'],
+    optionsAm: ['12', '18', '24', '36'],
+    correctAnswer: '18',
+    explanation: 'Let total = n. Red = n/3. After adding 6: (n/3 + 6)/(n+6) = 1/2. Solving: 2(n/3+6) = n+6 → 2n/3+12 = n+6 → 6 = n/3 → n = 18.',
+    explanationAm: 'ጠቅላላ = n. ቀይ = n/3. ከ6 ከተጨመሩ: (n/3 + 6)/(n+6) = 1/2. ፈቶ: n = 18።',
+    estimatedSeconds: 80,
+  },
+
+  // Odd One Out – Hard
+  {
+    id: 'lm_037',
+    category: 'odd_one_out',
+    difficulty: 'hard',
+    question: 'Which does NOT belong: 8, 27, 64, 100, 125?',
+    questionAm: 'የማይጣጣም ቁጥር ምንድን ነው፡ 8, 27, 64, 100, 125?',
+    options: ['8', '27', '64', '100'],
+    optionsAm: ['8', '27', '64', '100'],
+    correctAnswer: '100',
+    explanation: '8=2³, 27=3³, 64=4³, 125=5³ are perfect cubes. 100=10² is a perfect square but not a perfect cube.',
+    explanationAm: '8=2³, 27=3³, 64=4³, 125=5³ ፍጹም ኪዩቦች ናቸው። 100=10² ፍጹም ኪዩብ አይደለም።',
+    estimatedSeconds: 55,
+  },
+
+  // Math Logic – Hard
+  {
+    id: 'lm_038',
+    category: 'math_logic',
+    difficulty: 'hard',
+    question: 'A water tank fills in 6 hours with pipe A alone, and in 4 hours with pipe B alone. How long to fill with both pipes open?',
+    questionAm: 'አንድ ታንክ ፓይፕ A ብቻ ሲሠራ በ6 ሰዓት ይሞላል, ፓይፕ B ብቻ ሲሠራ ደግሞ በ4 ሰዓት ይሞላል። ሁለቱ ፓይፖች አብረው ሲሠሩ ስንት ሰዓት ይፈጃል?',
+    options: ['2 hrs', '2.4 hrs', '3 hrs', '5 hrs'],
+    optionsAm: ['2 ሰዓት', '2.4 ሰዓት', '3 ሰዓት', '5 ሰዓት'],
+    correctAnswer: '2.4 hrs',
+    explanation: 'Combined rate = 1/6 + 1/4 = 5/12 per hour. Time = 12/5 = 2.4 hours.',
+    explanationAm: 'ጠቅላላ ፍጥነት = 1/6 + 1/4 = 5/12 ጊዜ/ሰዓት። ጊዜ = 12/5 = 2.4 ሰዓት።',
+    estimatedSeconds: 70,
+  },
+  {
+    id: 'lm_039',
+    category: 'math_logic',
+    difficulty: 'hard',
+    question: 'A number when divided by 5 gives remainder 3, and divided by 7 gives remainder 2. The smallest such positive number is?',
+    questionAm: 'አንድ ቁጥር በ5 ሲካፈል ቀሪ 3, በ7 ሲካፈል ቀሪ 2 ይሰጣል። ይህን የሚያሟሉ ትንሹ አዎንታዊ ቁጥር ምንድን ነው?',
+    options: ['23', '37', '53', '58'],
+    optionsAm: ['23', '37', '53', '58'],
+    correctAnswer: '23',
+    explanation: 'Checking: 23÷5=4 r3 ✓, 23÷7=3 r2 ✓. 23 satisfies both conditions.',
+    explanationAm: 'ፈትሸን፡ 23÷5=4 ቀሪ3 ✓, 23÷7=3 ቀሪ2 ✓. 23 ሁለቱንም ሁኔታዎች ያሟላል።',
+    estimatedSeconds: 80,
+  },
+
+  // Spatial – Hard
+  {
+    id: 'lm_040',
+    category: 'spatial_sequence',
+    difficulty: 'hard',
+    question: 'How many rectangles (including squares) are in a 3×3 grid of unit squares?',
+    questionAm: 'የ3×3 ሳጥን ውስጥ ስንት አራት ማዕዘን (ካሬዎችን ጨምሮ) ሊቆጠሩ ይችላሉ?',
+    options: ['14', '18', '36', '40'],
+    optionsAm: ['14', '18', '36', '40'],
+    correctAnswer: '36',
+    explanation: 'Choosing 2 of 4 horizontal lines × 2 of 4 vertical lines = C(4,2)×C(4,2) = 6×6 = 36.',
+    explanationAm: 'ከ4 አግድም መስመሮች 2ን × ከ4 ቁልቁለት መስመሮች 2ን መምረጥ = C(4,2)×C(4,2) = 6×6 = 36።',
+    estimatedSeconds: 90,
+  },
+];
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  Convenience filter helpers
+// ─────────────────────────────────────────────────────────────────────────────
+
+export function getQuestionsByDifficulty(
+  difficulty: import('./logicTypes').LogicDifficulty
+): LogicQuestion[] {
+  return LOGIC_QUESTIONS.filter((q) => q.difficulty === difficulty);
+}
+
+export function countByDifficulty(): Record<import('./logicTypes').LogicDifficulty, number> {
+  return {
+    easy: getQuestionsByDifficulty('easy').length,
+    medium: getQuestionsByDifficulty('medium').length,
+    hard: getQuestionsByDifficulty('hard').length,
+  };
+}
+
+/**
+ * Randomly sample n questions from the eligible pool.
+ * Uses Fisher-Yates shuffle.
+ */
+export function sampleQuestions(
+  difficulty: import('./logicTypes').LogicDifficulty,
+  count: number
+): LogicQuestion[] {
+  const pool = [...getQuestionsByDifficulty(difficulty)];
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  return pool.slice(0, Math.min(count, pool.length));
+}

@@ -4,22 +4,61 @@ import logoTurboMath from '../assets/logo-turbo-math.jpg';
 import logoTriviaBadge from '../assets/trivia-badge.jpg';
 import logoMemoryMatrix from '../assets/logo-memory-matrix.jpg';
 import logoGrandmasterChess from '../assets/logo-grandmaster-chess.jpg';
-import logoGeezWordQuest from '../assets/logo-geez-word-quest.jpg';
+import logoDamaMasters from '../assets/logo-dama-masters.jpg';
 import logoLogicCircuit from '../assets/logo-logic-circuit.jpg';
+import logoLogicMasters from '../assets/logo-logic-masters.jpg';
 
 /**
  * CENTRALIZED GAME CATALOG
  * 
- * Includes the 4 flagship titles specified in prompt:
+ * Includes flagship titles:
  * 1. Turbo Math Challenge (Mathematics) - Available
  * 2. Ethiopian Mind Sprint (Trivia) - Available
  * 3. Heritage Memory Matrix (Memory) - Available
  * 4. Ethiopian Grandmaster Chess (Strategy) - Available
+ * 5. Dama Masters (Strategy / Checkers) - Available
  * 
  * Plus additional curated game titles (Educational / Puzzle) to showcase
  * the full category filter system and transparent "Coming Soon" states.
  */
 export const GAME_CATALOG: Game[] = [
+  {
+    id: 'dama-masters',
+    title: 'Dama Masters',
+    titleAm: 'ዳማ ማስተርስ',
+    description: 'A classic checkers strategy game. Challenge an AI opponent or play against a friend on the same device.',
+    descriptionAm: 'ጥንታዊውና ተወዳጁ የዳማ ስልት ጨዋታ። ከ AI ጋር ወይም በአንድ ስልክ ከጓደኛዎ ጋር ይወዳደሩ።',
+    category: 'chess',
+    categoryLabel: 'Strategy',
+    categoryLabelAm: 'ስልት',
+    difficulty: 'Easy',
+    difficultyAm: 'ቀላል',
+    icon: 'Crown',
+    logoUrl: logoDamaMasters,
+    accentColor: '#ef4444',
+    badge: 'Classic',
+    badgeAm: 'ክላሲክ',
+    bestScore: 2800,
+    maxPointsReward: 400,
+    rating: 4.9,
+    playsCount: 15400,
+    isFeatured: true,
+    status: 'available',
+    createdAt: '2026-03-12T10:00:00Z',
+    minDurationMinutes: 3,
+    engineStatus: 'Checkers Rules & AI Engine (Active)',
+    engineStatusAm: 'የዳማ ህግጋትና AI ሞተር (ዝግጁ)',
+    rules: [
+      'Standard 8×8 English/American Checkers using the 32 dark squares.',
+      'Ordinary pieces move diagonally forward; capturing opponent pieces is mandatory.',
+      'Multi-jumps must continue with the same piece. Crowned kings move and capture forward and backward.',
+    ],
+    rulesAm: [
+      'በ8×8 ሰሌዳ ላይ ባሉ 32 ጥቁር ሳጥኖች የሚካሄድ መደበኛ የዳማ ህግ።',
+      'ተራ ጠጠሮች ወደፊት ብቻ በሰያፍ ይጓዛሉ፤ ተቃራኒ ጠጠርን መዝለልና መያዝ ግዴታ ነው።',
+      'ተከታታይ ዝላይ በአንድ ጠጠር መጠናቀቅ አለበት። ደማ (ንጉሥ) ወደፊትም ወደኋላም ይዘላል።',
+    ],
+  },
   {
     id: 'turbo-math-challenge',
     title: 'Turbo Math Challenge',
@@ -168,39 +207,7 @@ export const GAME_CATALOG: Game[] = [
       'የእንቅስቃሴዎች መዝገብ (Notation)፣ እንቅስቃሴ መልስ፣ የሰሌዳ መገልበጥ እና የተያዙ ቁሶች መከታተያ።',
     ],
   },
-  {
-    id: 'geez-word-quest',
-    title: 'Ge\'ez Word Quest',
-    titleAm: 'የግዕዝ ቃላት ፍለጋ',
-    description: 'Master ancient Ge\'ez script roots, vocabulary roots, and linguistic puzzles.',
-    descriptionAm: 'የጥንታዊ ግዕዝ ቋንቋ ፊደላትና ቃላትን የሚያስተምር አዝናኝ የትምህርት ጨዋታ።',
-    category: 'educational',
-    categoryLabel: 'Educational',
-    categoryLabelAm: 'ትምህርታዊ',
-    difficulty: 'Medium',
-    difficultyAm: 'መካከለኛ',
-    icon: 'BookOpen',
-    logoUrl: logoGeezWordQuest,
-    accentColor: '#f97316',
-    badge: 'Language',
-    badgeAm: 'ቋንቋ',
-    maxPointsReward: 400,
-    rating: 4.85,
-    playsCount: 0,
-    status: 'coming_soon',
-    createdAt: '2026-03-25T09:00:00Z',
-    minDurationMinutes: 3,
-    engineStatus: 'Curriculum & Dictionary Stage',
-    engineStatusAm: 'ስርአተ-ትምህርት ዝግጅት ላይ',
-    rules: [
-      'Unscramble ancient Ge\'ez Fidel symbols into correct phrases.',
-      'Learn morphological root definitions upon each completion.',
-    ],
-    rulesAm: [
-      'የግዕዝ ፊደላትን በማገጣጠም ትክክለኛ ቃላትን ይፍጠሩ።',
-      'እያንዳንዱን ደረጃ ሲጨርሱ የቃሉን ፍች ይማራሉ።',
-    ],
-  },
+
   {
     id: 'logic-circuit-labyrinth',
     title: 'Logic Circuit Labyrinth',
@@ -232,6 +239,44 @@ export const GAME_CATALOG: Game[] = [
     rulesAm: [
       'የኤሌክትሪክ ፍሰቱን በትክክለኛ ጌቶች አቅጣጫ ይምሩ።',
       'በትንሹ እንቅስቃሴ ሙሉውን ሰርኪዩት ያብሩ።',
+    ],
+  },
+  // New Logic Masters entry
+  {
+    id: 'logic-masters',
+    title: 'Logic Masters',
+    titleAm: 'ሎጂክ ማስተርስ',
+    description: 'Solve diverse logic puzzles across categories and difficulty levels.',
+    descriptionAm: 'በተለያዩ ምድቦች እና ደረጃዎች የሎጂክ ፍልሚያዎችን ይፍቱ።',
+    category: 'puzzle',
+    categoryLabel: 'Puzzle',
+    categoryLabelAm: 'ፍልሚያ',
+    difficulty: 'Easy',
+    difficultyAm: 'ቀላል',
+    icon: 'Cpu',
+    logoUrl: logoLogicMasters,
+    accentColor: '#06b6d4',
+    badge: 'Brain',
+    badgeAm: 'ሐሳብ',
+    bestScore: 0,
+    maxPointsReward: 400,
+    rating: 4.9,
+    playsCount: 0,
+    isFeatured: true,
+    status: 'available',
+    createdAt: '2026-04-01T10:00:00Z',
+    minDurationMinutes: 3,
+    engineStatus: 'React + TypeScript (Logic Puzzles)',
+    engineStatusAm: 'ሪያክት + TypeScript (የሎጂክ ፍልሚያ)',
+    rules: [
+      'Select the correct answer within the time limit.',
+      'Earn XP based on difficulty; no penalties for wrong answers.',
+      'Review answers at session end.',
+    ],
+    rulesAm: [
+      'በተወሰነው ጊዜ ውስጥ ትክክለኛውን መልስ ይምረጡ።',
+      'በደረጃው ተወላጅ የ XP ማግኘት ይችላሉ፣ ለስህተት ቅጣቶች የለም።',
+      'በተጫወተበት ክፍለጊዜ ላይ መልሶችን ይገልጹ።',
     ],
   },
 ];

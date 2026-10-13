@@ -1895,7 +1895,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 16px;
+  gap: 8px;
+  min-height: 48px;
+  padding: 10px 14px;
   background: var(--surface-2);
   border: 1px solid rgba(168, 85, 247, 0.25);
   border-radius: var(--radius-md);
@@ -1922,6 +1924,7 @@
   color: var(--accent-purple-light);
   width: 22px;
   height: 22px;
+  flex-shrink: 0;
   border-radius: 50%;
   background: rgba(168, 85, 247, 0.15);
   display: flex;
@@ -1930,10 +1933,14 @@
 }
 
 .option-value {
-  font-size: 1.15rem;
-  font-weight: 800;
+  font-size: clamp(0.88rem, 2.4vw, 1.12rem);
+  font-weight: 700;
   font-family: var(--font-heading);
   letter-spacing: -0.01em;
+  text-align: right;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: calc(100% - 28px);
 }
 
 /* Feedback Indicator */
@@ -2074,6 +2081,368 @@
   gap: 6px;
   padding: 10px 14px;
   font-size: 0.85rem;
+}
+
+.turbo-bank-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background: rgba(168, 85, 247, 0.2);
+  color: var(--accent-purple-light);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  letter-spacing: 0.02em;
+}
+
+.turbo-question-meta-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  padding: 2px 8px;
+}
+
+.meta-badge-area {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.meta-badge-dot {
+  color: rgba(168, 85, 247, 0.4);
+}
+
+.meta-badge-diff {
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.meta-badge-diff.easy {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.meta-badge-diff.medium {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.meta-badge-diff.hard {
+  background: rgba(244, 63, 94, 0.15);
+  color: #f43f5e;
+  border: 1px solid rgba(244, 63, 94, 0.3);
+}
+
+.meta-badge-qnum {
+  font-family: monospace;
+  font-size: 0.68rem;
+  color: var(--text-dim);
+}
+
+.game-over-explanation-box {
+  width: 100%;
+  padding: 10px 12px;
+  background: rgba(147, 51, 234, 0.08);
+  border: 1px solid rgba(147, 51, 234, 0.25);
+  border-radius: var(--radius-md);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.explanation-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent-purple-light);
+}
+
+.explanation-text {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ==========================================================================
+   Turbo Math Challenge - Difficulty Tier & Question Count Selection UI
+   ========================================================================== */
+.turbo-setup-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px 14px;
+  background: var(--surface-glass);
+  border: 1px solid var(--surface-glass-border);
+  border-radius: var(--radius-lg);
+  animation: fadeIn 0.2s ease-out;
+}
+
+.turbo-setup-header {
+  text-align: center;
+}
+
+.turbo-setup-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #fff;
+  font-family: var(--font-heading);
+  margin: 0 0 4px 0;
+}
+
+.turbo-setup-subtitle {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.turbo-setup-error-banner {
+  background: rgba(244, 63, 94, 0.15);
+  border: 1px solid rgba(244, 63, 94, 0.4);
+  color: #f43f5e;
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  font-size: 0.78rem;
+  text-align: center;
+}
+
+.turbo-diff-selection-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.turbo-diff-card {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--surface-glass-border);
+  background: var(--surface-2);
+  cursor: pointer;
+  transition: all 0.18s ease;
+  user-select: none;
+}
+
+.turbo-diff-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-purple);
+  background: var(--surface-3);
+}
+
+.turbo-diff-card.active {
+  background: rgba(168, 85, 247, 0.12);
+  border-color: var(--accent-purple);
+  box-shadow: 0 4px 18px rgba(168, 85, 247, 0.22);
+}
+
+.turbo-diff-card.easy.active {
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.12);
+  box-shadow: 0 4px 18px rgba(16, 185, 129, 0.22);
+}
+
+.turbo-diff-card.medium.active {
+  border-color: #f59e0b;
+  background: rgba(245, 158, 11, 0.12);
+  box-shadow: 0 4px 18px rgba(245, 158, 11, 0.22);
+}
+
+.turbo-diff-card.hard.active {
+  border-color: #f43f5e;
+  background: rgba(244, 63, 94, 0.12);
+  box-shadow: 0 4px 18px rgba(244, 63, 94, 0.22);
+}
+
+.diff-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.diff-badge-pill {
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.diff-badge-pill.easy {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.diff-badge-pill.medium {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+.diff-badge-pill.hard {
+  background: rgba(244, 63, 94, 0.2);
+  color: #f43f5e;
+  border: 1px solid rgba(244, 63, 94, 0.4);
+}
+
+.diff-count-chip {
+  font-size: 0.68rem;
+  color: var(--text-dim);
+  font-weight: 700;
+}
+
+.diff-card-title {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #fff;
+  font-family: var(--font-heading);
+  margin: 4px 0 2px 0;
+}
+
+.diff-card-desc {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  line-height: 1.35;
+  margin: 0;
+}
+
+.diff-card-meta {
+  display: flex;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.diff-meta-item {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--accent-purple-light);
+}
+
+.turbo-qcount-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--surface-glass-border);
+  border-radius: var(--radius-md);
+}
+
+.turbo-qcount-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.turbo-qcount-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.turbo-qcount-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 8px 4px;
+  background: var(--surface-3);
+  border: 1px solid var(--surface-glass-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.turbo-qcount-btn:hover {
+  border-color: var(--accent-purple);
+  transform: translateY(-1px);
+}
+
+.turbo-qcount-btn.active {
+  background: rgba(168, 85, 247, 0.22);
+  border-color: var(--accent-purple);
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.2);
+}
+
+.qcount-num {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #fff;
+  font-family: var(--font-heading);
+}
+
+.qcount-time {
+  font-size: 0.64rem;
+  color: var(--text-dim);
+  font-weight: 600;
+}
+
+.turbo-start-challenge-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 20px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  width: 100%;
+  cursor: pointer;
+  margin-top: 2px;
+}
+
+.game-over-tier-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--surface-glass-border);
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+}
+
+.tier-pill-count {
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.turbo-settings-btn {
+  flex: 1.2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 12px;
+  font-size: 0.82rem;
 }
 
 /* ==========================================================================
@@ -3535,8 +3904,38 @@
 }
 
 .board-piece.floating {
-  transform: translateY(-4px) scale(1.1);
-  filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.5));
+  transform: translateY(-4px) scale(1.08);
+  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.55));
+}
+
+/* Strategic smooth sliding animation for Chess pieces */
+.board-piece.animating-slide {
+  transform: translate(calc(var(--dx, 0) * 100%), calc(var(--dy, 0) * 100%)) scale(1.06);
+  transition: transform 190ms cubic-bezier(0.25, 1, 0.5, 1);
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.7));
+  z-index: 25;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* Elegant restrained capture dissolve for Chess */
+.board-piece.animating-captured-dissolve {
+  transform: scale(0.65);
+  opacity: 0;
+  transition: transform 180ms ease-out, opacity 180ms ease-out;
+  pointer-events: none;
+  z-index: 10;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .board-piece.animating-slide {
+    transition: none !important;
+    transform: none !important;
+  }
+  .board-piece.animating-captured-dissolve {
+    transition: none !important;
+    opacity: 0 !important;
+  }
 }
 
 .chess-piece-svg {
